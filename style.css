@@ -20,6 +20,12 @@
   --transition:   0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --font-logo: 'Unbounded', sans-serif;
 }
+*, *::before, *::after {
+  transition: background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease !important;
+}
 
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -300,6 +306,10 @@ ul { list-style: none; }
   overflow: hidden;
   padding: 8rem 0 4rem;
 }
+[data-theme="dark"] .hero-bg-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  color: transparent;
+}
 .hero-bg-text {
   position: absolute;
   top: 50%;
@@ -315,7 +325,7 @@ ul { list-style: none; }
   pointer-events: none;
   user-select: none;
   z-index: 0;
-}
+} 
 .hero-container {
   width: 90%;
   max-width: 1200px;
@@ -444,6 +454,7 @@ ul { list-style: none; }
   object-fit: cover;
   transition: transform 0.8s ease;
 }
+
 .about-img-frame:hover .about-img { transform: scale(1.04); }
 .about-img-tag {
   position: absolute;
@@ -754,7 +765,106 @@ ul { list-style: none; }
   transform: translateX(-50%);
   white-space: nowrap;
 }
+/* Tombol toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+  margin-left: auto;
+}
+[data-theme="dark"] #contact,
+[data-theme="dark"] #about {
+  position: relative;
+  overflow: hidden;
+}
 
+[data-theme="dark"] #contact::before,
+[data-theme="dark"] #about::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 200, 0, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+/* Pastikan konten contact tetap di atas blur */
+[data-theme="dark"] #contact .container
+[data-theme="dark"] #about .container {
+  position: relative;
+  z-index: 1;
+}
+[data-theme="dark"] .theme-icon {
+  filter: grayscale(100%);
+}
+.theme-toggle:hover {
+  background: var(--border);
+}
+
+/* Variabel dark mode */
+[data-theme="dark"] {
+  --bg:        #111111;
+  --bg-card:   #1a1a1a;
+  --bg-dark:   #000000;
+  --text:      #f0f0f0;
+  --text-muted:#888888;
+  --border:    #2a2a2a;
+  --shadow:    0 4px 32px rgba(0,0,0,0.3);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.4);
+}
+/* Transisi semua elemen navbar */
+.navbar,
+.navbar *,
+.nav-menu,
+.nav-link,
+.nav-logo {
+  transition: background 0.4s ease, 
+              color 0.4s ease, 
+              border-color 0.4s ease !important;
+}
+
+
+/* Dark mode navbar */
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(17, 17, 17, 0.92);
+  border-bottom: 1px solid #2a2a2a;
+}
+
+[data-theme="dark"] .nav-menu {
+  background: rgba(17, 17, 17, 0.95);
+  border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .nav-link {
+  color: #888888;
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: #f0f0f0;
+}
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: #f0f0f0;
+}
+/* Transisi smooth saat ganti mode */
+body {
+  transition: background 0.4s ease, color 0.4s ease;
+}
 /* Mobile — hapus absolute, susun vertikal */
 @media (max-width: 640px) {
   .footer-inner {

@@ -142,7 +142,32 @@ function handleNavVisibility() {
     navMenu.style.pointerEvents = 'auto';
   }
 }
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon   = document.querySelector('.theme-icon');
 
+// Cek preferensi tersimpan
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+// Toggle saat diklik
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next    = current === 'dark' ? 'light' : 'dark';
+
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  themeIcon.textContent = next === 'dark' ? '🌙' : '☀️';
+});
+
+// Ikuti preferensi sistem otomatis
+if (!localStorage.getItem('theme')) {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (prefersDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeIcon.textContent = '🌙';
+  }
+}
 
 window.addEventListener('scroll', handleNavVisibility, { passive: true });
 handleNavVisibility(); // jalankan saat load
