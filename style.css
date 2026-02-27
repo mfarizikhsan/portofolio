@@ -503,7 +503,13 @@ ul { list-style: none; }
   letter-spacing: 0.04em;
   margin-top: 0.25rem;
 }
-
+@media (max-width: 640px) {
+  *, *::before, *::after {
+    transition: background-color 0.3s ease,
+                color 0.3s ease !important;
+    /* hapus filter, box-shadow, dll di mobile */
+  }
+}
 /* ============================================
    PROJECTS
    ============================================ */
