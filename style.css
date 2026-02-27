@@ -1,5 +1,5 @@
 /* ============================================
-   PORTFOLIO — Alex Rayhan
+   PORTFOLIO — Fariz IKhsan
    style.css
    ============================================ */
 
@@ -76,49 +76,6 @@ ul { list-style: none; }
   background: var(--text-muted);
 }
 
-/* Hover link/button → pill */
-.ipad-cursor.on-link {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  /* Ring muncul bertahap — 3 layer makin luar makin tipis */
-  box-shadow:
-    0 0 0 6px  rgba(0, 0, 0, 0.12),
-    0 0 0 12px rgba(0, 0, 0, 0.06),
-    0 0 0 18px rgba(0, 0, 0, 0.02);
-}
-
-/* Hover card/gambar → lingkaran besar */
-.ipad-cursor.on-card {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  opacity: 0.7;
-}
-
-/* Hover teks → garis kursor */
-.ipad-cursor.on-text {
-  width: 3px;
-  height: 1.4em;
-  border-radius: 2px;
-}
-
-/* Klik → mengecil */
-.ipad-cursor.clicking {
-  transform: translate(-50%, -50%) scale(0.78);
-}
-
-/* Keluar window → hilang */
-.ipad-cursor.hidden {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.5);
-}
-
-/* Nonaktif di touchscreen */
-@media (hover: none) {
-  * { cursor: auto !important; }
-  .ipad-cursor { display: none; }
-}
 
 /* Efek saat hover elemen interaktif */
 .cursor.hovered { transform: translate(-50%, -50%) scale(2.5); background: transparent; border: 1.5px solid #1a1a1a; }
@@ -942,7 +899,11 @@ body {
   .about-image-wrap { justify-content: flex-start; }
   .contact-grid  { grid-template-columns: 1fr; gap: 3rem; }
 }
-
+@media (max-width: 640px) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
 /* Mobile */
 @media (max-width: 640px) {
   .about-image-wrap {
